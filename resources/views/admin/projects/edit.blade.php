@@ -1,36 +1,40 @@
 @extends('layouts.app')
 
-@section('title', 'Create Project')
+@section('title', 'Edit Project')
 
 @section('content')
     <section>
         <div class="container my-4">
             <a href="{{ route('admin.projects.index') }}" class="mb-3 btn btn-primary"><i
                     class="fa-solid fa-list-check me-2"></i>See all Projects</a>
-            <h1 class="mb-3">Create Project</h1>
-            <form action="{{ route('admin.projects.store') }}" class="row g-3" method="POST">
+            <h1 class="mb-3">Edit <i>{{ $project['title'] }}</i></h1>
+            <form action="{{ route('admin.projects.update', $project) }}" class="row g-3" method="POST">
+                @method('PATCH')
                 @csrf
                 <div class="col-12">
                     <label class="form-label" for="img">Image</label>
-                    <input class="form-control" type="img" id="img" name="">
+                    <input class="form-control" type="img" id="img" name=""
+                        value="{{ $project['path_img'] }}">
                 </div>
                 <div class="col-12">
                     <label class="form-label" for="title">Project Name</label>
-                    <input class="form-control" type="text" id="title" name="title">
+                    <input class="form-control" type="text" id="title" name="title"
+                        value="{{ $project['title'] }}">
                 </div>
                 <div class="col-12">
                     <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control" type="text" id="description" name="description"> </textarea>
+                    <textarea class="form-control" type="text" id="description" name="description">{{ $project['description'] }}"</textarea>
                 </div>
 
                 <div class="col-12">
                     <label class="form-label" for="git-link">Git Link</label>
-                    <input class="form-control" type="text" id="git-link" name="git-link"> </input>
+                    <input class="form-control" type="text" id="git-link" name="git-link" value="{{ $project['url'] }}">
+                    </input>
                 </div>
 
                 <div class="col-12 my-4">
                     <button class="btn btn-success">
-                        <i class="fa-solid fa-floppy-disk me-2"></i> Save
+                        <i class="fa-solid fa-floppy-disk me-2"></i> Edit
                     </button>
                 </div>
 
