@@ -8,7 +8,6 @@ use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
-
 class ProjectSeeder extends Seeder
 {
     /**
@@ -18,14 +17,19 @@ class ProjectSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for($i=0; $i<150; $i++){
-            $project = new project;
-            $project->title= $faker-> catchPhrase();
-            $project->content = $faker->paragraphs(2,true);
-            $project->slug = Str::slug($project->title);
+        for ($i = 0; $i < 30; $i++) {
+            $title = $faker->sentence;
+            if (Str::endsWith($title, '.')) {
+                $title = substr($title, 0, -1);
+            }
 
-            $project->save();
+            Project::create([
+                'title' => $title,
+                'description' => $faker->paragraph(3),
+                'percorso_immagine' => 'percorso_immagine' . $faker->numberBetween(1, 10) . '.jpg',
+                'url' => $faker->url,
+                'slug' => Str::slug($faker->sentence(3)),
+            ]);
         }
-        
     }
 }
