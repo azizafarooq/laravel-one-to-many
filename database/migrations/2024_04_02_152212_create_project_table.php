@@ -16,11 +16,9 @@ return new class extends Migration {
             $table->id();
             $table->string('title', 150);
             $table->text('description');
-            $table->string('percorso_immagine');
+            $table->string('path_img')->nullable();
             $table->string('url')->nullable();
-            $table->string('slug')->unique();
             $table->timestamps();
-
         });
     }
 

@@ -7,13 +7,13 @@
         <div class="container my-4">
             <a href="{{ route('admin.projects.create') }}" class="mb-3 btn btn-primary"><i
                     class="fa-solid fa-plus me-1"></i>Add Project</a>
-            <h1>My Projects</h1>
+            <h1 class="mb-3">My Projects</h1>
             <table class="table table-spacing">
                 <thead>
                     <tr>
+                        <th>Image</th>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Image</th>
                         <th>Git Link</th>
                         <th>Actions</th>
                     </tr>
@@ -21,9 +21,9 @@
                 <tbody>
                     @forelse($projects as $project)
                         <tr>
+                            <td>{{ $project['path_img'] }}</td>
                             <td>{{ $project['title'] }}</td>
                             <td class="text-truncate" style="max-width: 200px;">{{ $project['description'] }}</td>
-                            <td>{{ $project['percorso_immagine'] }}</td>
                             <td class="text-truncate" style="max-width: 150px;">{{ $project['url'] }}</td>
                             <td>
                                 <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-primary py-1">
