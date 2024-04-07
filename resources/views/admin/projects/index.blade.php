@@ -14,6 +14,7 @@
                         <th>Image</th>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Type</th>
                         <th>Git Link</th>
                         <th>Actions</th>
                     </tr>
@@ -21,10 +22,17 @@
                 <tbody>
                     @forelse($projects as $project)
                         <tr>
-                            <td>{{ $project['path_img'] }}</td>
-                            <td>{{ $project['title'] }}</td>
-                            <td class="text-truncate" style="max-width: 200px;">{{ $project['description'] }}</td>
-                            <td class="text-truncate" style="max-width: 150px;">{{ $project['url'] }}</td>
+                            <td>{{ $project->path_img }}</td>
+                            <td>{{ $project->title }}</td>
+                            <td class="text-truncate" style="max-width: 200px;">{{ $project->description }}</td>
+                            <td>
+                                @if ($project->type)
+                                    {{ $project->type->label }}
+                                @else
+                                    No Type Assigned
+                                @endif
+                            </td>
+                            <td class="text-truncate" style="max-width: 150px;">{{ $project->url }}</td>
                             <td>
                                 <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-primary py-1">
                                     <i class="fa-solid fa-eye me-1 fa-xs"> </i> </a>

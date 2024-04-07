@@ -27,6 +27,16 @@
                 </div>
 
                 <div class="col-12">
+                    <label class="form-label" for="type_id">Type</label>
+                    <select class="form-select" name="type_id" id="type_id">
+                        <option value="">Select Type</option>
+                        @foreach ($types as $type)
+                            <option value="{{ $type->id }}">{{ $type->label }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-12">
                     <label class="form-label" for="git-link">Git Link</label>
                     <input class="form-control" type="text" id="git-link" name="git-link" value="{{ $project['url'] }}">
                     </input>

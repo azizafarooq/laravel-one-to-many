@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
@@ -17,6 +18,8 @@ class ProjectSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+
+        $types = Type::all()->pluck('id');
         for ($i = 0; $i < 20; $i++) {
             $title = $faker->sentence;
             if (Str::endsWith($title, '.')) {
@@ -24,6 +27,7 @@ class ProjectSeeder extends Seeder
             }
 
             Project::create([
+                'types_id' => $faker->randomElement($types),
                 'title' => $title,
                 'description' => $faker->paragraph(3),
                 'path_img' => 'path_img' . $faker->numberBetween(1, 10) . '.jpg',
